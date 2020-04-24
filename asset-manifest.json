@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/vovkahimik/counter/static/css/main.2f255e79.chunk.css",
+    "main.js": "/vovkahimik/counter/static/js/main.b40d3a1c.chunk.js",
+    "main.js.map": "/vovkahimik/counter/static/js/main.b40d3a1c.chunk.js.map",
+    "runtime-main.js": "/vovkahimik/counter/static/js/runtime-main.8454c341.js",
+    "runtime-main.js.map": "/vovkahimik/counter/static/js/runtime-main.8454c341.js.map",
+    "static/js/2.c63ea9d6.chunk.js": "/vovkahimik/counter/static/js/2.c63ea9d6.chunk.js",
+    "static/js/2.c63ea9d6.chunk.js.map": "/vovkahimik/counter/static/js/2.c63ea9d6.chunk.js.map",
+    "index.html": "/vovkahimik/counter/index.html",
+    "precache-manifest.d52034f5056ed86b42d8fa0c487b7a0f.js": "/vovkahimik/counter/precache-manifest.d52034f5056ed86b42d8fa0c487b7a0f.js",
+    "service-worker.js": "/vovkahimik/counter/service-worker.js",
+    "static/css/main.2f255e79.chunk.css.map": "/vovkahimik/counter/static/css/main.2f255e79.chunk.css.map",
+    "static/js/2.c63ea9d6.chunk.js.LICENSE.txt": "/vovkahimik/counter/static/js/2.c63ea9d6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8454c341.js",
+    "static/js/2.c63ea9d6.chunk.js",
+    "static/css/main.2f255e79.chunk.css",
+    "static/js/main.b40d3a1c.chunk.js"
+  ]
+}
