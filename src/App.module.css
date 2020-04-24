@@ -1,0 +1,62 @@
+.App {
+    height: 100vh;
+    background: #805b60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    height: 150px;
+    width: 248px;
+    border: solid 2px #a79d2f;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.counter {
+    height: 75px;
+    width: 226px;
+    margin-bottom: -9px;
+    border: solid 2px #a79d2f;
+    border-radius: 12px;
+    color: #a79d2f;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: solid 2px #a79d2f;
+    border-radius: 12px;
+    height: 40px;
+    width: 226px;
+}
+
+.button {
+    border-radius: 12px;
+    border: none;
+    background: #a79d2f;
+    color: #805b60;
+    font-size: medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 79%;
+    width: 30%;
+}
+
+.button:focus {
+    outline: none;
+}
+.button:active{
+    background: #805b60;
+    color: #a79d2f;
+}
