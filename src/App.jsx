@@ -21,6 +21,9 @@ class App extends React.Component {
         if (this.state.countValue === 45) {
             classCount = styles.counter45
             buttonDisabled = true
+            setTimeout(() => {
+                alert('Не понимаю почему двойной алерт :(')
+            }, 450);
         } else {
             classCount = styles.counter
             buttonDisabled = false
