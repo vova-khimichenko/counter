@@ -1,6 +1,6 @@
 {
   "name": "counter",
-  "homepage":"https://github.com/vovkahimik/counter",
+  "homepage": "https://github.com/vovkahimik/counter/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
