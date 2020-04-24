@@ -30,17 +30,9 @@
     align-items: center;
 }
 
-.counter45 {
-    height: 75px;
-    width: 226px;
-    margin-bottom: -9px;
-    border: solid 2px #a79d2f;
-    border-radius: 12px;
+.error {
     color: crimson;
     font-size: xx-large;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .buttons {
@@ -64,6 +56,11 @@
     align-items: center;
     height: 79%;
     width: 30%;
+}
+
+.button:disabled {
+    background-color: #756731;
+    color: #805b60;
 }
 
 .button:focus {

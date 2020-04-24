@@ -5,39 +5,43 @@ class App extends React.Component {
 
     state = {
         countValue: 40,
+        error: false
     }
 
     upCount = () => {
-        this.setState({countValue: this.state.countValue + 1})
+        // debugger
+        this.setState({countValue: this.state.countValue + 1},
+            () => {
+                if (this.state.countValue === 42) {
+                    this.setState({
+                        error: true
+                    })
+                }
+            }
+        )
     }
 
     countReset = () => {
-        this.setState({countValue: 40})
+        this.setState({countValue: 40, error: false})
     }
 
     render = () => {
 
-        let classCount, buttonDisabled
-        if (this.state.countValue === 45) {
-            classCount = styles.counter45
-            buttonDisabled = true
-            setTimeout(() => {
-                alert('Не понимаю почему двойной алерт :(')
-            }, 450);
-        } else {
-            classCount = styles.counter
-            buttonDisabled = false
-        }
+        let classCountDisabled = this.state.error ? styles.error : ''
 
         return (
             <div className={styles.App}>
                 <div className={styles.container}>
-                    <div className={classCount}>{this.state.countValue}</div>
+                    <div className={styles.counter}>
+                        <span className={classCountDisabled}>
+                            {this.state.countValue}
+                        </span>
+                    </div>
                     <div className={styles.buttons}>
                         {/*<div className={styles.button}>*/}
                         <button className={styles.button}
                                 onClick={this.upCount}
-                                disabled={buttonDisabled}>
+                                disabled={this.state.error}>
                             inc
                         </button>
                         {/*</div>*/}
