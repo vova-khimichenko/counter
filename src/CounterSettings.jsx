@@ -1,9 +1,16 @@
 import React from 'react';
 import styles from './App.module.css';
 import Button from "./Button";
-import Display from "./Display";
 
-class Counter2 extends React.Component {
+class CounterSettings extends React.Component {
+
+    maxCountValue = (event) => {
+        this.props.maxCountValue(+event.currentTarget.value)
+    }
+
+    startCountValue = (event) => {
+        this.props.startCountValue(+event.currentTarget.value)
+    }
 
     render = () => {
 
@@ -15,17 +22,20 @@ class Counter2 extends React.Component {
                             <div className={styles.max}>
                                 <span>max value:</span>
                                 <input className={styles.maxNumber}
-                                       type={'number'}/>
+                                       type={'number'}
+                                       onChange={this.maxCountValue}/>
                             </div>
                             <div>
                                 <span>start value:</span>
                                 <input className={styles.startNumber}
-                                       type={'number'}/>
+                                       type={'number'}
+                                       onChange={this.startCountValue}/>
                             </div>
                         </div>
                     </div>
                     <div className={styles.buttons}>
-                        <Button name={this.props.state.buttonNames.reset}/>
+                        <Button name={this.props.state.buttonNames.set}
+                                setCount={this.props.setCount}/>
                     </div>
                 </div>
             </div>
@@ -33,4 +43,4 @@ class Counter2 extends React.Component {
     }
 }
 
-export default Counter2
+export default CounterSettings

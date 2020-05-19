@@ -9,7 +9,7 @@ class Display extends React.Component {
 
         return (
             <span className={classCountDisabled}>
-                            {this.props.value}
+                            {this.props.countValues.count}
             </span>
         )
     }

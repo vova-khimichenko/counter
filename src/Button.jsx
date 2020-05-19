@@ -9,6 +9,8 @@ class Button extends React.Component {
                 return this.props.upCount()
             case 'reset':
                 return this.props.countReset()
+            case 'set':
+                return this.props.setCount()
             default: alert('give me name function')
         }
     }
