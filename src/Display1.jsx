@@ -1,17 +1,7 @@
 import React from 'react';
 import styles from './App.module.css';
-import Button from "./Button";
 
-class App extends React.Component {
-
-    state = {
-        countValue: 40,
-        error: false,
-        buttonNames: {
-            inc: 'inc',
-            reset: 'reset'
-        }
-    }
+class Display1 extends React.Component {
 
     upCount = () => {
         this.setState({countValue: this.state.countValue + 1},
@@ -42,16 +32,24 @@ class App extends React.Component {
                         </span>
                     </div>
                     <div className={styles.buttons}>
-                        <Button error={this.state.error}
-                                upCount={this.upCount}
-                                name={this.state.buttonNames.inc}/>
-                        <Button countReset={this.countReset}
-                                name={this.state.buttonNames.reset}/>
+                        {/*<div className={styles.button}>*/}
+                        <button className={styles.button}
+                                onClick={this.upCount}
+                                disabled={this.state.error}>
+                            inc
+                        </button>
+                        {/*</div>*/}
+                        {/*<div className={styles.button}>*/}
+                        <button className={styles.button}
+                                onClick={this.countReset}>
+                            reset
+                        </button>
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default App
+export default Display1
