@@ -16,6 +16,8 @@
 
     width: 248px;
     height: 150px;
+    margin-right: 40px;
+    margin-left: 40px;
 
     border: solid 2px #a79d2f;
     border-radius: 12px;
@@ -35,6 +37,13 @@
     color: #a79d2f;
     border: solid 2px #a79d2f;
     border-radius: 12px;
+}
+
+.counter2 {
+    composes: counter;
+    font-size: medium;
+    flex-direction: column;
+
 }
 
 .error {
@@ -83,4 +92,19 @@
 .button:active {
     color: #a79d2f;
     background: #805b60;
+}
+
+.startNumber {
+    width: 66px;
+    margin-left: 39px;
+    border-radius: 12px;
+    text-align: center
+}
+.startNumber:focus{
+    outline: none;
+
+}
+.maxNumber{
+    composes: startNumber;
+    margin-left: 42px;
 }

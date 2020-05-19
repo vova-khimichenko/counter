@@ -1,23 +1,28 @@
 import React from 'react';
 import styles from './App.module.css';
-import Button from "./Button";
-import Display from "./Display";
+import Counter from "./Counter";
+import Counter2 from "./Counter2";
 
 class App extends React.Component {
 
     state = {
-        countValue: 40,
+        countValues: {
+            count: 40,
+            max: null,
+            start: null
+        },
         error: false,
         buttonNames: {
             inc: 'inc',
-            reset: 'reset'
+            reset: 'reset',
+            set: 'set'
         }
     }
 
     upCount = () => {
-        this.setState({countValue: this.state.countValue + 1},
+        this.setState({countValues: {count: this.state.countValues.count + 1}},
             () => {
-                if (this.state.countValue === 42) {
+                if (this.state.countValues.count === 42) {
                     this.setState({
                         error: true
                     })
@@ -27,26 +32,17 @@ class App extends React.Component {
     }
 
     countReset = () => {
-        this.setState({countValue: 40, error: false})
+        this.setState({countValues: {count: 40}, error: false})
     }
 
     render = () => {
 
         return (
             <div className={styles.App}>
-                <div className={styles.container}>
-                    <div className={styles.counter}>
-                        <Display value={this.state.countValue}
-                                 error={this.state.error}/>
-                    </div>
-                    <div className={styles.buttons}>
-                        <Button error={this.state.error}
-                                upCount={this.upCount}
-                                name={this.state.buttonNames.inc}/>
-                        <Button countReset={this.countReset}
-                                name={this.state.buttonNames.reset}/>
-                    </div>
-                </div>
+                <Counter2 state={this.state}/>
+                <Counter state={this.state}
+                         upCount={this.upCount}
+                         countReset={this.countReset}/>
             </div>
         )
     }
