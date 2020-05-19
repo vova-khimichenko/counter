@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './App.module.css';
 import Button from "./Button";
+import Display from "./Display";
 
 class App extends React.Component {
 
@@ -31,15 +32,12 @@ class App extends React.Component {
 
     render = () => {
 
-        let classCountDisabled = this.state.error ? styles.error : ''
-
         return (
             <div className={styles.App}>
                 <div className={styles.container}>
                     <div className={styles.counter}>
-                        <span className={classCountDisabled}>
-                            {this.state.countValue}
-                        </span>
+                        <Display value={this.state.countValue}
+                                 error={this.state.error}/>
                     </div>
                     <div className={styles.buttons}>
                         <Button error={this.state.error}

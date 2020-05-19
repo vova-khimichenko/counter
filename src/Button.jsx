@@ -3,7 +3,7 @@ import styles from './App.module.css';
 
 class Button extends React.Component {
 
-    onClick = (props) => {
+    onClick = () => {
         switch (this.props.name) {
             case 'inc':
                 return this.props.upCount()
