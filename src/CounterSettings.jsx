@@ -14,6 +14,8 @@ class CounterSettings extends React.Component {
 
     render = () => {
 
+        // let classCountDisabled = this.props.state.countValues.error ? styles.error : ''
+
         return (
             <div className={styles.App}>
                 <div className={styles.container}>
@@ -23,18 +25,21 @@ class CounterSettings extends React.Component {
                                 <span>max value:</span>
                                 <input className={styles.maxNumber}
                                        type={'number'}
-                                       onChange={this.maxCountValue}/>
+                                       onChange={this.maxCountValue}
+                                       value={this.props.state.countValues.max}/>
                             </div>
                             <div>
                                 <span>start value:</span>
                                 <input className={styles.startNumber}
                                        type={'number'}
-                                       onChange={this.startCountValue}/>
+                                       onChange={this.startCountValue}
+                                       value={this.props.state.countValues.start}/>
                             </div>
                         </div>
                     </div>
                     <div className={styles.buttons}>
-                        <Button name={this.props.state.buttonNames.set}
+                        <Button error={this.props.state.countValues.error}
+                                name={this.props.state.buttonNames.set}
                                 setCount={this.props.setCount}/>
                     </div>
                 </div>
