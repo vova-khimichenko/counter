@@ -8,13 +8,13 @@ class App extends React.Component {
     state = {
         countValues: {
             incorrect: "incorrect values",
-            correct: "enter values & press 'set'",
             count: "enter values & press 'set'",
             max: 1,
             start: 0,
-            error: false
+            countError: false,
+            maxError: false,
+            startError: false
         },
-        error: false,
         buttonNames: {
             inc: 'inc',
             reset: 'reset',
@@ -26,7 +26,8 @@ class App extends React.Component {
         if (this.state.countValues.max > this.state.countValues.start) {
             this.setState({
                     countValues: {
-                        ...this.state.countValues, count: this.state.countValues.count + 1
+                        ...this.state.countValues,
+                        count: this.state.countValues.count + 1
                     }
                 }, () => {
                     if (this.state.countValues.count === this.state.countValues.max) {
@@ -39,7 +40,8 @@ class App extends React.Component {
         } else {
             this.setState({
                 countValues: {
-                    ...this.state.countValues, count: this.state.countValues.incorrect
+                    ...this.state.countValues,
+                    count: this.state.countValues.incorrect
                 },
             })
         }
@@ -52,55 +54,80 @@ class App extends React.Component {
                 max: 1,
                 start: 0,
                 count: "enter values & press 'set'",
-                error: false
+                errorStart: false,
+                errorMax: false
             },
             error: false
         })
     }
 
     maxCountValue = (value) => {
-        value > this.state.countValues.start && value > 0
-            ? this.setState({
-                countValues: {
-                    ...this.state.countValues, max: value,
-                    count: "enter values & press 'set'"
-                },
-                error: false
-            })
-            : this.setState({
+        if (value <= 0) {
+            this.setState({
                 countValues: {
                     ...this.state.countValues,
-                    max: this.state.countValues.start + 1,
-                    count: "enter values & press 'set'"
-                },
-                error: false
+                    max: value,
+                    count: this.state.countValues.incorrect,
+                    maxError: true
+                }
             })
+        } else if (this.state.countValues.startError) {
+            this.setState({
+                countValues: {
+                    ...this.state.countValues,
+                    max: value,
+                    count: this.state.countValues.incorrect,
+                    maxError: false
+                }
+            })
+        } else {
+            this.setState({
+                countValues: {
+                    ...this.state.countValues,
+                    max: value,
+                    count: "enter values & press 'set'",
+                    maxError: false
+                }
+            })
+        }
     }
 
     startCountValue = (value) => {
-        value > -1
-            ? this.setState({
+        if (value <= -1) {
+            this.setState({
                 countValues: {
                     ...this.state.countValues,
                     start: value,
-                    // max: value + 1,
-                    count: "enter values & press 'set'",
-                    error: false
-                },
+                    startError: true,
+                    count: this.state.countValues.incorrect,
+                }
             })
-            : this.setState({
+        } else if (this.state.countValues.maxError) {
+            this.setState({
                 countValues: {
                     ...this.state.countValues,
-                    count: this.state.countValues.incorrect,
-                    error: true
-                },
+                    start: value,
+                    startError: false,
+                    count: this.state.countValues.incorrect
+                }
             })
+        } else {
+            this.setState({
+                countValues: {
+                    ...this.state.countValues,
+                    start: value,
+                    startError: false,
+                    count: "enter values & press 'set'",
+                }
+            })
+        }
     }
 
     setCount = () => {
         this.setState({
             countValues: {
-                ...this.state.countValues, count: this.state.countValues.start,
+                ...this.state.countValues,
+                count: this.state.countValues.start,
             },
             error: false
         })

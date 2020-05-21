@@ -20,7 +20,7 @@ class Button extends React.Component {
         return (
             <button className={styles.button}
                     onClick={this.onClick}
-                    disabled={this.props.error}>
+                    disabled={this.props.disabled}>
                 {this.props.name}
             </button>
         )

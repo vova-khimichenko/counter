@@ -14,23 +14,30 @@ class CounterSettings extends React.Component {
 
     render = () => {
 
-        // let classCountDisabled = this.props.state.countValues.error ? styles.error : ''
+        let classValueMaxDisabled = this.props.state.countValues.maxError
+            ? styles.valueError : styles.value
+
+        let classValueStartDisabled = this.props.state.countValues.startError
+            ? styles.valueError : styles.value
+
+        let buttonDisabled = this.props.state.countValues.startError
+            || this.props.state.countValues.maxError
 
         return (
             <div className={styles.App}>
                 <div className={styles.container}>
-                    <div className={styles.counter2}>
+                    <div className={styles.counterSettings}>
                         <div className={styles.numbers}>
-                            <div className={styles.max}>
+                            <div>
                                 <span>max value:</span>
-                                <input className={styles.maxNumber}
+                                <input className={classValueMaxDisabled}
                                        type={'number'}
                                        onChange={this.maxCountValue}
                                        value={this.props.state.countValues.max}/>
                             </div>
                             <div>
                                 <span>start value:</span>
-                                <input className={styles.startNumber}
+                                <input className={classValueStartDisabled}
                                        type={'number'}
                                        onChange={this.startCountValue}
                                        value={this.props.state.countValues.start}/>
@@ -38,7 +45,7 @@ class CounterSettings extends React.Component {
                         </div>
                     </div>
                     <div className={styles.buttons}>
-                        <Button error={this.props.state.countValues.error}
+                        <Button disabled={buttonDisabled}
                                 name={this.props.state.buttonNames.set}
                                 setCount={this.props.setCount}/>
                     </div>

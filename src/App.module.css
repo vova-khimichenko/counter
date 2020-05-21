@@ -39,18 +39,30 @@
     border-radius: 12px;
 }
 
-.counter2 {
-    composes: counter;
+.counterSettings {
     font-size: medium;
+
     flex-direction: column;
 
+    composes: counter;
 }
 
-.error {
+.countString {
+    font-size: medium;
+}
+
+.errorCount {
     font-size: xx-large;
 
-    color: crimson;
+    color: #9ef9e8;
 }
+
+.errorMaxStart {
+    font-size: medium;
+
+    color: #9ef9e8;
+}
+
 
 .buttons {
     display: flex;
@@ -94,17 +106,19 @@
     background: #805b60;
 }
 
-.startNumber {
+.value {
     width: 66px;
     margin-left: 39px;
-    border-radius: 12px;
-    text-align: center
-}
-.startNumber:focus{
-    outline: none;
 
+    text-align: center;
+
+    border-radius: 12px;
 }
-.maxNumber{
-    composes: startNumber;
-    margin-left: 42px;
+
+.value:focus {
+    outline: none;
+}
+.valueError {
+    composes: value;
+    background-color: #9ef9e8;
 }
