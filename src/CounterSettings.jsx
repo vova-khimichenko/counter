@@ -5,11 +5,17 @@ import Button from "./Button";
 class CounterSettings extends React.Component {
 
     maxCountValue = (event) => {
-        this.props.maxCountValue(+event.currentTarget.value)
+        let value = +event.currentTarget.value
+        if (-5 < value && value < 20) {
+            this.props.maxCountValue(value)
+        }
     }
 
     startCountValue = (event) => {
-        this.props.startCountValue(+event.currentTarget.value)
+        let value = +event.currentTarget.value
+        if (-5 < value && value < 20) {
+            this.props.startCountValue(value)
+        }
     }
 
     render = () => {
@@ -23,26 +29,23 @@ class CounterSettings extends React.Component {
         let setDisabled = this.props.state.countIncorrect
             || !this.props.state.disabledSetReset
 
-
         return (
             <div className={styles.App}>
                 <div className={styles.container}>
                     <div className={styles.counterSettings}>
-                        <div className={styles.numbers}>
-                            <div>
-                                <span>max value:</span>
-                                <input className={classValueMaxDisabled}
-                                       type={'number'}
-                                       onChange={this.maxCountValue}
-                                       value={this.props.state.max}/>
-                            </div>
-                            <div>
-                                <span>start value:</span>
-                                <input className={classValueStartDisabled}
-                                       type={'number'}
-                                       onChange={this.startCountValue}
-                                       value={this.props.state.start}/>
-                            </div>
+                        <div>
+                            <span className={styles.maxValue}>max value:</span>
+                            <input className={classValueMaxDisabled}
+                                   type={'number'}
+                                   onChange={this.maxCountValue}
+                                   value={this.props.state.max}/>
+                        </div>
+                        <div>
+                            <span>start value:</span>
+                            <input className={classValueStartDisabled}
+                                   type={'number'}
+                                   onChange={this.startCountValue}
+                                   value={this.props.state.start}/>
                         </div>
                     </div>
                     <div className={styles.buttons}>

@@ -139,3 +139,8 @@
 
     composes: value;
 }
+
+.maxValue
+{
+    margin-right: 2px;
+}
