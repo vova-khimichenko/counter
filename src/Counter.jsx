@@ -6,11 +6,10 @@ class Counter extends React.Component {
 
     render = () => {
 
-        let classCount = this.props.state.countValues.errorCount
+        let classCount = this.props.state.countValues.error
             ? styles.errorCount
-            : this.props.state.countValues.startError
-            || this.props.state.countValues.maxError
-                ? styles.errorMaxStart
+            : this.props.state.countValues.countError
+                ? styles.countError
                 : typeof (this.props.state.countValues.count) === "string"
                     ? styles.countString
                     : ''
@@ -26,7 +25,7 @@ class Counter extends React.Component {
                         </span>
                     </div>
                     <div className={styles.buttons}>
-                        <Button disabled={this.props.state.error}
+                        <Button disabled={this.props.state.countValues.error}
                                 upCount={this.props.upCount}
                                 name={this.props.state.buttonNames.inc}/>
                         <Button countReset={this.props.countReset}

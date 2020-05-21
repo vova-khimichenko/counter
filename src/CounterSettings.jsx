@@ -22,6 +22,7 @@ class CounterSettings extends React.Component {
 
         let buttonDisabled = this.props.state.countValues.startError
             || this.props.state.countValues.maxError
+            || this.props.state.countValues.countError
 
         return (
             <div className={styles.App}>
