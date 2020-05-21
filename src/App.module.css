@@ -1,4 +1,5 @@
-.App {
+.App
+{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,7 +9,8 @@
     background: #805b60;
 }
 
-.container {
+.container
+{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -23,7 +25,8 @@
     border-radius: 12px;
 }
 
-.counter {
+.counter
+{
     font-size: x-large;
 
     display: flex;
@@ -39,7 +42,8 @@
     border-radius: 12px;
 }
 
-.counterSettings {
+.counterSettings
+{
     font-size: medium;
 
     flex-direction: column;
@@ -47,24 +51,28 @@
     composes: counter;
 }
 
-.countString {
+.countString
+{
     font-size: medium;
 }
 
-.errorCount {
+.upError
+{
     font-size: xx-large;
 
     color: #9ef9e8;
 }
 
-.countError {
+.countIncorrect
+{
     font-size: medium;
 
     color: #9ef9e8;
 }
 
 
-.buttons {
+.buttons
+{
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -76,7 +84,8 @@
     border-radius: 12px;
 }
 
-.button {
+.button
+{
     font-size: medium;
 
     display: flex;
@@ -92,21 +101,25 @@
     background: #a79d2f;
 }
 
-.button:disabled {
+.button:disabled
+{
     color: #805b60;
     background-color: #756731;
 }
 
-.button:focus {
+.button:focus
+{
     outline: none;
 }
 
-.button:active {
+.button:active
+{
     color: #a79d2f;
     background: #805b60;
 }
 
-.value {
+.value
+{
     width: 66px;
     margin-left: 39px;
 
@@ -115,10 +128,14 @@
     border-radius: 12px;
 }
 
-.value:focus {
+.value:focus
+{
     outline: none;
 }
-.valueError {
-    composes: value;
+
+.valueError
+{
     background-color: #9ef9e8;
+
+    composes: value;
 }
