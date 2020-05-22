@@ -4,15 +4,7 @@ import styles from './App.module.css';
 class Button extends React.Component {
 
     onClick = () => {
-        switch (this.props.name) {
-            case 'inc':
-                return this.props.upCount()
-            case 'reset':
-                return this.props.countReset()
-            case 'set':
-                return this.props.setCount()
-            default: alert('give me name function')
-        }
+        this.props.onClick()
     }
 
     render = () => {

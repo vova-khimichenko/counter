@@ -6,32 +6,37 @@ class Counter extends React.Component {
 
     render = () => {
 
-        let classCount = this.props.state.upError
+        let classCount = this.props.upError
             ? styles.upError
-            : this.props.state.countIncorrect
+            : this.props.startError || this.props.maxError
                 ? styles.countIncorrect
-                : typeof (this.props.state.count) === "string"
-                    ? styles.countString
-                    : ''
+                : ''
 
-        let incDisabled = this.props.state.upError
-            || this.props.state.disabledSetReset
+        let incDisabled = this.props.upError
+        || !this.props.isDataEntering
+
+
+        let counterView = this.props.isDataEntering
+            ? this.props.startCount
+            : this.props.startError || this.props.maxError
+                ? "incorrect values"
+                : "enter values & press"
 
         return (
             <div className={styles.App}>
                 <div className={styles.container}>
                     <div className={styles.counter}>
                         <span className={classCount}>
-                            {this.props.state.count}
+                            {counterView}
                         </span>
                     </div>
                     <div className={styles.buttons}>
                         <Button disabled={incDisabled}
-                                upCount={this.props.upCount}
-                                name={this.props.state.buttonNames.inc}/>
-                        <Button disabled={this.props.state.disabledSetReset}
-                                countReset={this.props.countReset}
-                                name={this.props.state.buttonNames.reset}/>
+                                onClick={this.props.upCount}
+                                name={'inc'}/>
+                        <Button disabled={!this.props.isDataEntering}
+                                onClick={this.props.countReset}
+                                name={'reset'}/>
                     </div>
                 </div>
             </div>

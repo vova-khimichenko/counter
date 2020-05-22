@@ -4,34 +4,37 @@ import Button from "./Button";
 
 class CounterSettings extends React.Component {
 
+    state = {
+        maxValue: 1,
+        startValue: 0
+    }
+
     maxCountValue = (event) => {
-        let value = +event.currentTarget.value
-        if (-5 < value && value < 20) {
-            this.props.maxCountValue(value)
-        } else {
-            alert('limit values from -4 to 19')
-        }
+        this.setState({
+            maxValue: +event.currentTarget.value,
+        }, () => {
+            this.props.countValue(this.state.maxValue, this.state.startValue)
+        })
     }
 
     startCountValue = (event) => {
-        let value = +event.currentTarget.value
-        if (-5 < value && value < 20) {
-            this.props.startCountValue(value)
-        } else {
-            alert('limit values from -4 to 19')
-        }
+        this.setState({
+            startValue: +event.currentTarget.value,
+        }, () => {
+            this.props.countValue(this.state.maxValue, this.state.startValue)
+        })
     }
 
     render = () => {
 
-        let classValueMaxDisabled = this.props.state.maxError
+        let classMaxError = this.props.maxError
             ? styles.valueError : styles.value
 
-        let classValueStartDisabled = this.props.state.startError
+        let classStartError = this.props.startError
             ? styles.valueError : styles.value
 
-        let setDisabled = this.props.state.countIncorrect
-            || !this.props.state.disabledSetReset
+        let setDisabled = this.props.isDataEntering
+            || this.props.maxError || this.props.startError
 
         return (
             <div className={styles.App}>
@@ -39,23 +42,23 @@ class CounterSettings extends React.Component {
                     <div className={styles.counterSettings}>
                         <div>
                             <span className={styles.maxValue}>max value:</span>
-                            <input className={classValueMaxDisabled}
+                            <input className={classMaxError}
                                    type={'number'}
                                    onChange={this.maxCountValue}
-                                   value={this.props.state.max}/>
+                                   value={this.state.maxValue}/>
                         </div>
                         <div>
                             <span>start value:</span>
-                            <input className={classValueStartDisabled}
+                            <input className={classStartError}
                                    type={'number'}
                                    onChange={this.startCountValue}
-                                   value={this.props.state.start}/>
+                                   value={this.state.startValue}/>
                         </div>
                     </div>
                     <div className={styles.buttons}>
                         <Button disabled={setDisabled}
-                                name={this.props.state.buttonNames.set}
-                                setCount={this.props.setCount}/>
+                                name={"set"}
+                                onClick={this.props.setCount}/>
                     </div>
                 </div>
             </div>
