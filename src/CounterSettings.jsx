@@ -8,6 +8,8 @@ class CounterSettings extends React.Component {
         let value = +event.currentTarget.value
         if (-5 < value && value < 20) {
             this.props.maxCountValue(value)
+        } else {
+            alert('limit values from -4 to 19')
         }
     }
 
@@ -15,6 +17,8 @@ class CounterSettings extends React.Component {
         let value = +event.currentTarget.value
         if (-5 < value && value < 20) {
             this.props.startCountValue(value)
+        } else {
+            alert('limit values from -4 to 19')
         }
     }
 

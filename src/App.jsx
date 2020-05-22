@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './App.module.css';
 import Counter from "./Counter";
 import CounterSettings from "./CounterSettings";
+import {restoreState, saveState} from "./LocStorFunctions";
 
 class App extends React.Component {
 
@@ -122,7 +123,13 @@ class App extends React.Component {
         this.setState({
             count: this.state.start,
             disabledSetReset: false,
+        }, () => {
+            saveState(this.state)
         })
+    }
+
+    componentDidMount() {
+        this.setState(restoreState())
     }
 
     render = () => {
