@@ -21,18 +21,26 @@ class App extends React.Component {
     }
 
     maxCountValue = (maxValue) => {
-        this.setState({
-            maxCount: maxValue,
-        }, () => {
-            this.countValue(this.state.maxCount, this.state.startCount)
-        })
+        if (maxValue > -1 && maxValue < 1000) {
+            this.setState({
+                maxCount: maxValue,
+            }, () => {
+                this.countValue(this.state.maxCount, this.state.startCount)
+            })
+        } else {
+            alert('limit values from 0 to 999')
+        }
     }
     startCountValue = (startValue) => {
-        this.setState({
-            startCount: startValue,
-        }, () => {
-            this.countValue(this.state.maxCount, this.state.startCount)
-        })
+        if (startValue > -2 && startValue < 1000) {
+            this.setState({
+                startCount: startValue,
+            }, () => {
+                this.countValue(this.state.maxCount, this.state.startCount)
+            })
+        } else {
+            alert('limit values from -1 to 999')
+        }
     }
 
     countValue = (maxValue, startValue) => {
