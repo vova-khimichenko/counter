@@ -6,24 +6,27 @@ class Counter extends React.Component {
 
     render = () => {
 
-        let classCount = this.props.startError || this.props.maxError
+        let classCount = this.props.isStartError || this.props.isMaxError
             ? styles.countIncorrect
-            : this.props.upCountMax
+            : this.props.isUpCountMax
                 ? styles.upCountMax
                 : this.props.isDataEntering
                     ? styles.isDataEntering
                     : ''
 
-        let counterView = this.props.startError || this.props.maxError
+        let counterView = this.props.isStartError || this.props.isMaxError
             ? "incorrect values"
-            : this.props.upCountMax || this.props.isDataEntering
+            : this.props.isUpCountMax || this.props.isDataEntering
                 ? this.props.currentCount
                 : "enter values & press сет"
 
-        let incDisabled = this.props.maxError || this.props.startError
-            || !this.props.isDataEntering || this.props.upCountMax
+        let incDisabled = this.props.isMaxError
+            || this.props.isStartError
+            || !this.props.isDataEntering
+            || this.props.isUpCountMax
 
-        let resetDisabled = this.props.maxError || this.props.startError
+        let resetDisabled = this.props.isMaxError
+            || this.props.isStartError
             || !this.props.isDataEntering
 
 

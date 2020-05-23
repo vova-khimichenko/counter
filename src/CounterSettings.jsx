@@ -14,13 +14,16 @@ class CounterSettings extends React.Component {
 
     render = () => {
 
-        let classMaxError = this.props.maxError
-            ? styles.valueError : styles.value
+        let classMaxError = this.props.isMaxError
+            ? styles.valueError
+            : styles.value
 
-        let classStartError = this.props.startError
-            ? styles.valueError : styles.value
+        let classStartError = this.props.isStartError
+            ? styles.valueError
+            : styles.value
 
-        let setDisabled = this.props.maxError || this.props.startError
+        let setDisabled = this.props.isMaxError
+            || this.props.isStartError
             || this.props.isDataEntering
 
         return (
@@ -46,6 +49,8 @@ class CounterSettings extends React.Component {
                         <Button disabled={setDisabled}
                                 name={"set"}
                                 onClick={this.props.setCount}/>
+                        <Button name={"RLS"}
+                                onClick={this.props.removeLocalStorage}/>
                     </div>
                 </div>
             </div>

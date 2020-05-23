@@ -9,7 +9,7 @@ export const saveState = (state) => {
 
 export const restoreState = (state) => {
     let stateAsString = localStorage.getItem('our-state')
-    if (stateAsString != null) {
+    if (stateAsString !== null) {
         state = JSON.parse(stateAsString)
     }
     return state
