@@ -4,25 +4,12 @@ import Button from "./Button";
 
 class CounterSettings extends React.Component {
 
-    state = {
-        maxValue: 1,
-        startValue: 0
-    }
-
     maxCountValue = (event) => {
-        this.setState({
-            maxValue: +event.currentTarget.value,
-        }, () => {
-            this.props.countValue(this.state.maxValue, this.state.startValue)
-        })
+        this.props.maxCountValue(+event.currentTarget.value)
     }
 
     startCountValue = (event) => {
-        this.setState({
-            startValue: +event.currentTarget.value,
-        }, () => {
-            this.props.countValue(this.state.maxValue, this.state.startValue)
-        })
+        this.props.startCountValue(+event.currentTarget.value)
     }
 
     render = () => {
@@ -33,8 +20,8 @@ class CounterSettings extends React.Component {
         let classStartError = this.props.startError
             ? styles.valueError : styles.value
 
-        let setDisabled = this.props.isDataEntering
-            || this.props.maxError || this.props.startError
+        let setDisabled = this.props.maxError || this.props.startError
+            || this.props.isDataEntering
 
         return (
             <div className={styles.App}>
@@ -45,14 +32,14 @@ class CounterSettings extends React.Component {
                             <input className={classMaxError}
                                    type={'number'}
                                    onChange={this.maxCountValue}
-                                   value={this.state.maxValue}/>
+                                   value={this.props.maxCount}/>
                         </div>
                         <div>
                             <span>start value:</span>
                             <input className={classStartError}
                                    type={'number'}
                                    onChange={this.startCountValue}
-                                   value={this.state.startValue}/>
+                                   value={this.props.startCount}/>
                         </div>
                     </div>
                     <div className={styles.buttons}>

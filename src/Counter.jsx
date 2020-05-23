@@ -6,21 +6,26 @@ class Counter extends React.Component {
 
     render = () => {
 
-        let classCount = this.props.upError
-            ? styles.upError
-            : this.props.startError || this.props.maxError
-                ? styles.countIncorrect
-                : ''
+        let classCount = this.props.startError || this.props.maxError
+            ? styles.countIncorrect
+            : this.props.upCountMax
+                ? styles.upCountMax
+                : this.props.isDataEntering
+                    ? styles.isDataEntering
+                    : ''
 
-        let incDisabled = this.props.upError
-        || !this.props.isDataEntering
+        let counterView = this.props.startError || this.props.maxError
+            ? "incorrect values"
+            : this.props.upCountMax || this.props.isDataEntering
+                ? this.props.currentCount
+                : "enter values & press сет"
 
+        let incDisabled = this.props.maxError || this.props.startError
+            || !this.props.isDataEntering || this.props.upCountMax
 
-        let counterView = this.props.isDataEntering
-            ? this.props.startCount
-            : this.props.startError || this.props.maxError
-                ? "incorrect values"
-                : "enter values & press"
+        let resetDisabled = this.props.maxError || this.props.startError
+            || !this.props.isDataEntering
+
 
         return (
             <div className={styles.App}>
@@ -34,7 +39,7 @@ class Counter extends React.Component {
                         <Button disabled={incDisabled}
                                 onClick={this.props.upCount}
                                 name={'inc'}/>
-                        <Button disabled={!this.props.isDataEntering}
+                        <Button disabled={resetDisabled}
                                 onClick={this.props.countReset}
                                 name={'reset'}/>
                     </div>

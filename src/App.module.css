@@ -1,5 +1,4 @@
-.App
-{
+.App {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,8 +8,7 @@
     background: #805b60;
 }
 
-.container
-{
+.container {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -25,8 +23,7 @@
     border-radius: 12px;
 }
 
-.counter
-{
+.counter {
     font-size: medium;
 
     display: flex;
@@ -42,8 +39,23 @@
     border-radius: 12px;
 }
 
-.counterSettings
-{
+.upCountMax {
+    font-size: 52px;
+
+    color: #9ef9e8;
+}
+
+.isDataEntering {
+    font-size: 32px;
+}
+
+.countIncorrect {
+    font-size: medium;
+
+    color: #9ef9e8;
+}
+
+.counterSettings {
     font-size: medium;
 
     flex-direction: column;
@@ -51,28 +63,7 @@
     composes: counter;
 }
 
-.countString
-{
-    font-size: medium;
-}
-
-.upError
-{
-    font-size: xx-large;
-
-    color: #9ef9e8;
-}
-
-.countIncorrect
-{
-    font-size: medium;
-
-    color: #9ef9e8;
-}
-
-
-.buttons
-{
+.buttons {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -84,8 +75,7 @@
     border-radius: 12px;
 }
 
-.button
-{
+.button {
     font-size: medium;
 
     display: flex;
@@ -101,46 +91,39 @@
     background: #a79d2f;
 }
 
-.button:disabled
-{
+.button:disabled {
     color: #805b60;
     background-color: #756731;
 }
 
-.button:focus
-{
+.button:focus {
     outline: none;
 }
 
-.button:active
-{
+.button:active {
     color: #a79d2f;
     background: #805b60;
 }
 
-.value
-{
+.value {
     width: 66px;
     margin-left: 39px;
 
     text-align: center;
-
+    border: solid 2px #a79d2f;
     border-radius: 12px;
 }
 
-.value:focus
-{
+.value:focus {
     outline: none;
 }
 
-.valueError
-{
+.valueError {
     background-color: #9ef9e8;
 
     composes: value;
 }
 
-.maxValue
-{
+.maxValue {
     margin-right: 2px;
 }

@@ -11,30 +11,27 @@ class App extends React.Component {
     }
 
     state = {
+        currentCount: 0,
         maxCount: 1,
         startCount: 0,
         isDataEntering: false,
         maxError: false,
         startError: false,
-        upError: false,
+        upCountMax: false,
     }
 
-    upCount = () => {
+    maxCountValue = (maxValue) => {
         this.setState({
-            startCount: this.state.startCount + 1
+            maxCount: maxValue,
         }, () => {
-            if (this.state.startCount === this.state.maxCount) {
-                this.setState({
-                    upError: true
-                })
-            }
+            this.countValue(this.state.maxCount, this.state.startCount)
         })
     }
-
-    countReset = () => {
+    startCountValue = (startValue) => {
         this.setState({
-            startCount: this.state.startCount,
-            upError: false
+            startCount: startValue,
+        }, () => {
+            this.countValue(this.state.maxCount, this.state.startCount)
         })
     }
 
@@ -46,7 +43,8 @@ class App extends React.Component {
         } else {
             this.setState({
                 maxError: false,
-                maxCount: maxValue
+                upCountMax: false,
+                isDataEntering: false
             })
         }
         if (startValue < 0 || startValue >= maxValue) {
@@ -56,33 +54,57 @@ class App extends React.Component {
         } else {
             this.setState({
                 startError: false,
-                startCount: startValue
+                upCountMax: false,
+                isDataEntering: false
             })
         }
     }
 
     setCount = () => {
         this.setState({
+            currentCount: this.state.startCount,
             isDataEntering: true
-            // }, () => {
-            //     saveState(this.state)
+            }, () => {
+                saveState(this.state)
         })
     }
 
+    upCount = () => {
+        this.setState({
+            currentCount: this.state.currentCount + 1
+        }, () => {
+            if (this.state.currentCount === this.state.maxCount) {
+                this.setState({
+                    upCountMax: true,
+                })
+            }
+        })
+    }
+
+    countReset = () => {
+        this.setState({
+            currentCount: this.state.startCount,
+            upCountMax: false
+        })
+    }
 
     render = () => {
 
         return (
             <div className={styles.App}>
-                <CounterSettings maxError={this.state.maxError}
+                <CounterSettings maxCount={this.state.maxCount}
+                                 startCount={this.state.startCount}
+                                 maxError={this.state.maxError}
                                  startError={this.state.startError}
                                  isDataEntering={this.state.isDataEntering}
+                                 maxCountValue={this.maxCountValue}
+                                 startCountValue={this.startCountValue}
                                  countValue={this.countValue}
                                  setCount={this.setCount}/>
                 <Counter maxError={this.state.maxError}
                          startError={this.state.startError}
-                         upError={this.state.upError}
-                         startCount={this.state.startCount}
+                         upCountMax={this.state.upCountMax}
+                         currentCount={this.state.currentCount}
                          isDataEntering={this.state.isDataEntering}
                          upCount={this.upCount}
                          countReset={this.countReset}/>
