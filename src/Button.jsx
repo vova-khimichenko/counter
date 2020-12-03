@@ -1,22 +1,15 @@
 import React from 'react';
 import styles from './App.module.css';
 
-class Button extends React.Component {
+export const Button = (props) => {
 
-    onClick = () => {
-        this.props.onClick()
-    }
+   const onClick = () => props.onClick()
 
-    render = () => {
-
-        return (
-            <button className={styles.button}
-                    onClick={this.onClick}
-                    disabled={this.props.disabled}>
-                {this.props.name}
-            </button>
-        )
-    }
+    return (
+        <button className={styles.button}
+                onClick={onClick}
+                disabled={props.disabled}>
+            {props.name}
+        </button>
+    )
 }
-
-export default Button
