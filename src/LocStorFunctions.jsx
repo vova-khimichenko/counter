@@ -1,14 +1,14 @@
 export const removeLocalStorage = () => {
-    localStorage.removeItem('our-state')
+    localStorage.removeItem('countState')
 }
 
 export const saveState = (state) => {
     let stateAsString = JSON.stringify(state)
-    localStorage.setItem('our-state', stateAsString)
+    localStorage.setItem('countState', stateAsString)
 }
 
 export const restoreState = (state) => {
-    let stateAsString = localStorage.getItem('our-state')
+    let stateAsString = localStorage.getItem('countState')
     if (stateAsString !== null) {
         state = JSON.parse(stateAsString)
     }

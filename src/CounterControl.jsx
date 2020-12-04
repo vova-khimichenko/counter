@@ -2,55 +2,46 @@ import React from 'react';
 import styles from './App.module.css';
 import {Button} from "./Button";
 
-class CounterControl extends React.Component {
+const CounterControl = (props) => {
 
-    onUpCount = () => this.props.upCount()
-    onCountReset = () => this.props.countReset()
+    const onUpCount = () => props.upCount()
+    const onCountReset = () => props.countReset()
 
-    render = () => {
-        // console.log(this.props)
-        let classCount = this.props.isState.isUpCountMax
-            ? styles.upCountMax
-            : this.props.isState.isStartError || this.props.isState.isMaxError
-                ? styles.countIncorrect
-                : this.props.isState.isDataEntering
-                    ? styles.isDataEntering
-                    : ''
+    let classCount = props.localState.isUpCountMax
+        ? styles.upCountMax
+        : props.localState.isStartError || props.localState.isMaxError
+            ? styles.countIncorrect
+            : props.localState.isDataEntering
+                ? styles.isDataEntering
+                : ''
 
-        let counterView = this.props.isState.isStartError || this.props.isState.isMaxError
-            ? "incorrect values"
-            : this.props.isState.isUpCountMax || this.props.isState.isDataEntering
-                ? this.props.reduxState.currentCount
-                : "enter values & press сет"
+    let counterView = props.localState.isStartError || props.localState.isMaxError
+        ? "incorrect values"
+        : props.localState.isUpCountMax || props.localState.isDataEntering
+            ? props.reduxState.currentCount
+            : "enter values & press сет"
 
-        let incDisabled = !this.props.isState.isDataEntering || this.props.isState.isUpCountMax
+    let incDisabled = !props.localState.isDataEntering || props.localState.isUpCountMax
 
-        // let resetDisabled =
-        //     // this.props.isMaxError||
-        // // this.props.isStartError
-        // //     ||
-        // !this.props.isDataEntering
-
-        return (
-            <div className={styles.App}>
-                <div className={styles.container}>
-                    <div className={styles.counter}>
+    return (
+        <div className={styles.App}>
+            <div className={styles.container}>
+                <div className={styles.counter}>
                         <span className={classCount}>
                             {counterView}
                         </span>
-                    </div>
-                    <div className={styles.buttons}>
-                        <Button disabled={incDisabled}
-                                onClick={this.onUpCount}
-                                name={'inc'}/>
-                        <Button disabled={!this.props.isState.isDataEntering}
-                                onClick={this.onCountReset}
-                                name={'reset'}/>
-                    </div>
+                </div>
+                <div className={styles.buttons}>
+                    <Button disabled={incDisabled}
+                            onClick={onUpCount}
+                            name={'inc'}/>
+                    <Button disabled={!props.localState.isDataEntering}
+                            onClick={onCountReset}
+                            name={'reset'}/>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default CounterControl

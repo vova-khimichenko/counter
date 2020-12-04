@@ -4,14 +4,9 @@ import CounterControl from "./CounterControl";
 import CounterSettings from "./CounterSettings";
 import {removeLocalStorage, restoreState, saveState} from "./LocStorFunctions";
 import {connect} from "react-redux";
-import {enterMaxValue, enterStartValue, setCount, upCount} from "./store/counterReducer";
+import {enterMaxValue, enterStartValue, resetCount, setCount, upCount} from "./store/counterReducer";
 
 class App extends React.Component {
-
-    // componentDidMount = (state) => {
-    //     console.log(state)
-    //     // this.setState(restoreState(state))
-    // }
 
     state = {
         maxCount: this.props.maxCount,
@@ -24,11 +19,15 @@ class App extends React.Component {
 
     maxCountValue = (maxValue) => {
         this.props.enterMaxValue(maxValue)
-        this.setState({maxCount: maxValue})
+        this.setState({
+            maxCount: maxValue,
+            isUpCountMax: false
+        })
         if (maxValue > -1 && maxValue <= 1000
             && maxValue > this.state.startCount) {
             this.setState({
-                isMaxError: false
+                isMaxError: false,
+                isDataEntering: false,
             })
         } else {
             this.setState({
@@ -49,11 +48,15 @@ class App extends React.Component {
 
     startCountValue = (startValue) => {
         this.props.enterStartValue(startValue)
-        this.setState({startCount: startValue})
+        this.setState({
+            startCount: startValue,
+            isUpCountMax: false
+        })
         if (startValue > -1 && startValue <= 1000
             && startValue < this.state.maxCount) {
             this.setState({
-                isStartError: false
+                isStartError: false,
+                isDataEntering: false
             })
         } else {
             this.setState({
@@ -73,12 +76,12 @@ class App extends React.Component {
     }
 
     setCount = () => {
-        this.setState({
-            isDataEntering: true,
-            // }, () => {
-            //     saveState(this.state)
-        })
         this.props.setCount()
+        this.setState({
+            isDataEntering: true
+        }, () => {
+            saveState(this.props)
+        })
     }
 
     upCount = () => {
@@ -91,40 +94,38 @@ class App extends React.Component {
     }
 
     countReset = () => {
-        this.setCount()
+        this.props.resetCount()
         this.setState({
             isUpCountMax: false
         })
     }
 
-// removeLocalStorage = () => {
-//     removeLocalStorage()
-//     let state = {
-//         currentCount: 0,
-//         maxCount: 1,
-//         startCount: 0,
-//         isDataEntering: false,
-//         isMaxError: false,
-//         isStartError: false,
-//         isUpCountMax: false,
-//     }
-//     this.componentDidMount(state)
-// }
+    componentDidMount = () => {
+        let LocStorState = restoreState()
+        if (LocStorState) {
+            this.props.enterMaxValue(LocStorState.maxCount)
+            this.props.enterStartValue(LocStorState.startCount)
+        }
+    }
+
+    onRemoveLocalStorage = () => {
+        removeLocalStorage()
+    }
 
     render = () => {
-        // console.log(this.props)
         return (
             <div className={styles.App}>
                 <CounterSettings
                     reduxState={this.props}
-                    isState={this.state}
+                    localState={this.state}
                     maxCountValue={this.maxCountValue}
                     startCountValue={this.startCountValue}
                     setCount={this.setCount}
+                    onRemoveLocalStorage={this.onRemoveLocalStorage}
                 />
                 <CounterControl
                     reduxState={this.props}
-                    isState={this.state}
+                    localState={this.state}
                     upCount={this.upCount}
                     countReset={this.countReset}
                 />
@@ -136,5 +137,5 @@ class App extends React.Component {
 const mapStateToProps = state => state
 
 export default connect(mapStateToProps, {
-    setCount, upCount, enterMaxValue, enterStartValue
+    setCount, resetCount, upCount, enterMaxValue, enterStartValue
 })(App)
