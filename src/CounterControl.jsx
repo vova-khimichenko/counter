@@ -4,10 +4,6 @@ import {Button} from "./Button";
 
 class CounterControl extends React.Component {
 
-    // state = {
-    //     isUpCountMax: false,
-    // }
-
     onUpCount = () => this.props.upCount()
     onCountReset = () => this.props.countReset()
 

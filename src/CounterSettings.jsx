@@ -5,11 +5,6 @@ import {saveState} from "./LocStorFunctions";
 
 class CounterSettings extends React.Component {
 
-    // state = {
-    //     isMaxError: false,
-    //     isStartError: false,
-    // }
-
     onMaxCountValue = (e) => this.props.maxCountValue(+e.currentTarget.value)
     onStartCountValue = (e) => this.props.startCountValue(+e.currentTarget.value)
     onSetCount = () => this.props.setCount()

@@ -14,9 +14,8 @@ class App extends React.Component {
     // }
 
     state = {
-        //     currentCount: 0,
-        //     maxCount: 1,
-        //     startCount: 0,
+        maxCount: this.props.maxCount,
+        startCount: this.props.startCount,
         isDataEntering: false,
         isMaxError: false,
         isStartError: false,
@@ -24,40 +23,58 @@ class App extends React.Component {
     }
 
     maxCountValue = (maxValue) => {
-        if (maxValue > -1 && maxValue < 1000) {
-            this.props.enterMaxValue(maxValue)
+        this.props.enterMaxValue(maxValue)
+        this.setState({maxCount: maxValue})
+        if (maxValue > -1 && maxValue <= 1000
+            && maxValue > this.state.startCount) {
             this.setState({
-                isMaxError: false,
-                isDataEntering: false,
-                isUpCountMax: false
+                isMaxError: false
             })
         } else {
-            // alert('limit values from 0 to 999')
             this.setState({
                 isMaxError: true
             })
         }
-    }
-
-    startCountValue = (startValue) => {
-        if (startValue > -2 && startValue < 1000) {
-            this.props.enterStartValue(startValue)
+        if (this.state.startCount > -1 && this.state.startCount <= 1000
+            && this.state.startCount < maxValue) {
             this.setState({
-                isStartError: false,
-                isDataEntering: false,
-                isUpCountMax: false
+                isStartError: false
             })
         } else {
-            // alert('limit values from -1 to 999')
             this.setState({
                 isStartError: true
             })
         }
     }
 
+    startCountValue = (startValue) => {
+        this.props.enterStartValue(startValue)
+        this.setState({startCount: startValue})
+        if (startValue > -1 && startValue <= 1000
+            && startValue < this.state.maxCount) {
+            this.setState({
+                isStartError: false
+            })
+        } else {
+            this.setState({
+                isStartError: true
+            })
+        }
+        if (this.state.maxCount > -1 && this.state.maxCount <= 1000
+            && this.state.maxCount > startValue) {
+            this.setState({
+                isMaxError: false
+            })
+        } else {
+            this.setState({
+                isMaxError: true
+            })
+        }
+    }
+
     setCount = () => {
         this.setState({
-            isDataEntering: true
+            isDataEntering: true,
             // }, () => {
             //     saveState(this.state)
         })
@@ -76,78 +93,38 @@ class App extends React.Component {
     countReset = () => {
         this.setCount()
         this.setState({
-            //         currentCount: this.state.startCount,
             isUpCountMax: false
         })
     }
 
-    // countValue = (maxValue, startValue) => {
-    //     if (maxValue < 1 || maxValue <= startValue) {
-    //         this.setState({
-    //             isMaxError: true,
-    //         })
-    //     } else {
-    //         this.setState({
-    //             isMaxError: false,
-    //             isUpCountMax: false,
-    //             isDataEntering: false
-    //         })
-    //     }
-    //     if (startValue < 0 || startValue >= maxValue) {
-    //         this.setState({
-    //             isStartError: true,
-    //         })
-    //     } else {
-    //         this.setState({
-    //             isStartError: false,
-    //             isUpCountMax: false,
-    //             isDataEntering: false
-    //         })
-    //     }
-    // }
-
-
-    // removeLocalStorage = () => {
-    //     removeLocalStorage()
-    //     let state = {
-    //         currentCount: 0,
-    //         maxCount: 1,
-    //         startCount: 0,
-    //         isDataEntering: false,
-    //         isMaxError: false,
-    //         isStartError: false,
-    //         isUpCountMax: false,
-    //     }
-    //     this.componentDidMount(state)
-    // }
+// removeLocalStorage = () => {
+//     removeLocalStorage()
+//     let state = {
+//         currentCount: 0,
+//         maxCount: 1,
+//         startCount: 0,
+//         isDataEntering: false,
+//         isMaxError: false,
+//         isStartError: false,
+//         isUpCountMax: false,
+//     }
+//     this.componentDidMount(state)
+// }
 
     render = () => {
         // console.log(this.props)
-
         return (
             <div className={styles.App}>
                 <CounterSettings
                     reduxState={this.props}
                     isState={this.state}
-                    // maxCount={this.state.maxCount}
-                    // startCount={this.state.startCount}
-                    // isMaxError={this.state.isMaxError}
-                    // isStartError={this.state.isStartError}
-                    // isDataEntering={this.state.isDataEntering}
                     maxCountValue={this.maxCountValue}
                     startCountValue={this.startCountValue}
-                    // countValue={this.countValue}
-                    // removeLocalStorage={this.removeLocalStorage}
                     setCount={this.setCount}
                 />
                 <CounterControl
                     reduxState={this.props}
                     isState={this.state}
-                    // isMaxError={this.state.isMaxError}
-                    // isStartError={this.state.isStartError}
-                    // isUpCountMax={this.state.isUpCountMax}
-                    // currentCount={this.state.currentCount}
-                    // isDataEntering={this.state.isDataEntering}
                     upCount={this.upCount}
                     countReset={this.countReset}
                 />
