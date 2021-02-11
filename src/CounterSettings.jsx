@@ -18,34 +18,32 @@ const CounterSettings = (props) => {
 
     let setDisabled = props.localState.isMaxError
         || props.localState.isStartError
-        || props.localState.isDataEntering
+        || !props.localState.isDataEntering
 
     return (
-        <div className={styles.App}>
-            <div className={styles.container}>
-                <div className={styles.counterSettings}>
-                    <div>
-                        <span className={styles.maxValue}>max value:</span>
-                        <input className={classMaxError}
-                               type={'number'}
-                               onChange={onMaxCountValue}
-                               value={props.reduxState.maxCount}/>
-                    </div>
-                    <div>
-                        <span>start value:</span>
-                        <input className={classStartError}
-                               type={'number'}
-                               onChange={onStartCountValue}
-                               value={props.reduxState.startCount}/>
-                    </div>
+        <div className={styles.container}>
+            <div className={styles.counterSettings}>
+                <div>
+                    <span className={styles.maxValue}>max value:</span>
+                    <input className={classMaxError}
+                           type={'number'}
+                           onChange={onMaxCountValue}
+                           value={props.reduxState.maxCount}/>
                 </div>
-                <div className={styles.buttons}>
-                    <Button disabled={setDisabled}
-                            name={"set"}
-                            onClick={onSetCount}/>
-                    <Button name={"RLS"}
-                            onClick={props.onRemoveLocalStorage}/>
+                <div>
+                    <span>start value:</span>
+                    <input className={classStartError}
+                           type={'number'}
+                           onChange={onStartCountValue}
+                           value={props.reduxState.startCount}/>
                 </div>
+            </div>
+            <div className={styles.buttons}>
+                <Button disabled={setDisabled}
+                        name={"set"}
+                        onClick={onSetCount}/>
+                <Button name={"RLS"}
+                        onClick={props.onRemoveLocalStorage}/>
             </div>
         </div>
     )

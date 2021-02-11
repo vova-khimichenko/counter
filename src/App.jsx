@@ -11,7 +11,7 @@ class App extends React.Component {
     state = {
         maxCount: this.props.maxCount,
         startCount: this.props.startCount,
-        isDataEntering: false,
+        isDataEntering: true,
         isMaxError: false,
         isStartError: false,
         isUpCountMax: false
@@ -27,7 +27,7 @@ class App extends React.Component {
             && maxValue > this.state.startCount) {
             this.setState({
                 isMaxError: false,
-                isDataEntering: false,
+                isDataEntering: true,
             })
         } else {
             this.setState({
@@ -37,7 +37,8 @@ class App extends React.Component {
         if (this.state.startCount > -1 && this.state.startCount <= 1000
             && this.state.startCount < maxValue) {
             this.setState({
-                isStartError: false
+                isStartError: false,
+                isDataEntering: true,
             })
         } else {
             this.setState({
@@ -56,7 +57,7 @@ class App extends React.Component {
             && startValue < this.state.maxCount) {
             this.setState({
                 isStartError: false,
-                isDataEntering: false
+                isDataEntering: true
             })
         } else {
             this.setState({
@@ -78,7 +79,7 @@ class App extends React.Component {
     setCount = () => {
         this.props.setCount()
         this.setState({
-            isDataEntering: true
+            isDataEntering: false
         }, () => {
             saveState(this.props)
         })
