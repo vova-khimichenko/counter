@@ -23,7 +23,7 @@ class App extends React.Component {
             maxCount: maxValue,
             isUpCountMax: false
         })
-        if (maxValue > -1 && maxValue <= 1000
+        if (maxValue > 0 && maxValue <= 1000
             && maxValue > this.state.startCount) {
             this.setState({
                 isMaxError: false,
@@ -64,7 +64,7 @@ class App extends React.Component {
                 isStartError: true
             })
         }
-        if (this.state.maxCount > -1 && this.state.maxCount <= 1000
+        if (this.state.maxCount > 0 && this.state.maxCount <= 1000
             && this.state.maxCount > startValue) {
             this.setState({
                 isMaxError: false
