@@ -1,7 +1,7 @@
 let initialState = {
     currentCount: null,
-    maxCount: 1,
-    startCount: 0
+    maxCount: 4,
+    startCount: 1
 }
 
 export const counterReducer = (state = initialState, action) => {
