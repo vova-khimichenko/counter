@@ -111,6 +111,14 @@ class App extends React.Component {
 
     onRemoveLocalStorage = () => {
         removeLocalStorage()
+        this.props.enterMaxValue(1)
+        this.props.enterStartValue(0)
+        this.setState({
+            isDataEntering: true,
+            isMaxError: false,
+            isStartError: false,
+            isUpCountMax: false
+        })
     }
 
     render = () => {
