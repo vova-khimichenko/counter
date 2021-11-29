@@ -1,99 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
 .App {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    height: 100vh;
+    min-height: 100vh;
 
-    background: #805b60;
+    background: #1D1D2C;
+}
+
+@media only screen and (max-width: 850px) {
+    .App {
+        flex-direction: column;
+    }
 }
 
 .container {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 
-    width: 248px;
-    height: 150px;
-    margin-right: 40px;
-    margin-left: 40px;
+    width: 355px;
+    height: 262px;
 
-    border: solid 2px #a79d2f;
+    margin: 30px;
+
+    border: solid 2px #3CBCC3;
     border-radius: 12px;
 }
 
 .counter {
-    font-size: medium;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 226px;
-    height: 75px;
-    margin-bottom: -9px;
-
-    color: #a79d2f;
-    border: solid 2px #a79d2f;
-    border-radius: 12px;
-}
-
-.upCountMax {
-    font-size: 52px;
-
-    color: #9ef9e8;
-}
-
-.isDataEntering {
-    font-size: 32px;
-}
-
-.countIncorrect {
-    font-size: medium;
-
-    color: #9ef9e8;
-}
-
-.counterSettings {
-    font-size: medium;
-
-    flex-direction: column;
-
-    composes: counter;
+    font-size: large;
+    color: #3CBCC3;
+    align-items: flex-end;
+    width: 290px;
+    height: 100px;
+    margin: 30px 0 16px;
+    padding: 0 15px 7px;
+    composes: container;
 }
 
 .buttons {
-    display: flex;
-    align-items: center;
     justify-content: space-around;
-
-    width: 226px;
-    height: 40px;
-
-    border: solid 2px #a79d2f;
-    border-radius: 12px;
+    align-items: center;
+    flex-direction: row;
+    height: 62px;
+    margin: 15px 0 30px;
+    composes: counter;
+    padding: 0;
 }
 
 .button {
-    font-size: medium;
-
-    display: flex;
     align-items: center;
-    justify-content: center;
 
-    width: 30%;
-    height: 79%;
-
-    color: #805b60;
-    border: none;
-    border-radius: 12px;
-    background: #a79d2f;
+    composes: counter;
+    width: 108px;
+    height: 38px;
+    color: #1D1D2C;
+    background: #3CBCC3;
+    padding: 0;
+    margin: 0;
 }
 
 .button:disabled {
-    color: #805b60;
-    background-color: #756731;
+    color: #1D1D2C;
+    background-color: #3CBCC3;
+    opacity: .2;
 }
 
 .button:focus {
@@ -101,29 +77,50 @@
 }
 
 .button:active {
-    color: #a79d2f;
-    background: #805b60;
+    color: #3CBCC3;
+    border-color: #1D1D2C;
+    background: #1D1D2C;
+}
+
+.upCountMax {
+    font-size: 52px;
+
+    color: #FE4A49;
+}
+
+.countNumber {
+    font-size: 32px;
+}
+
+.countIncorrect {
+    color: #FE4A49;
 }
 
 .value {
+    font-size: large;
     width: 66px;
-    margin-left: 39px;
+    margin-left: 74px;
 
-    text-align: center;
-    border: solid 2 px #a79d2f;
+    border: none;
     border-radius: 12px;
+    color: #3CBCC3;
+    background: #1D1D2C;
 }
+
+/*.value::-webkit-inner-spin-button {*/
+/*    border: 1px dashed white;*/
+/*    -webkit-appearance:none;*/
+/*    display: block;*/
+/*    width: 15px;*/
+/*    opacity: 1;*/
+/*    !*background-color: #1D1D2C;*!*/
+/*}*/
 
 .value:focus {
     outline: none;
 }
 
 .valueError {
-    background-color: #9ef9e8;
-
+    color: #E40C2B;
     composes: value;
-}
-
-.maxValue {
-    margin-right: 2px;
 }

@@ -11,7 +11,7 @@ class App extends React.Component {
     state = {
         maxCount: this.props.maxCount,
         startCount: this.props.startCount,
-        isDataEntering: false,
+        isDataEntering: true,
         isMaxError: false,
         isStartError: false,
         isUpCountMax: false
@@ -23,11 +23,11 @@ class App extends React.Component {
             maxCount: maxValue,
             isUpCountMax: false
         })
-        if (maxValue > -1 && maxValue <= 1000
+        if (maxValue > 0 && maxValue <= 1000
             && maxValue > this.state.startCount) {
             this.setState({
                 isMaxError: false,
-                isDataEntering: false,
+                isDataEntering: true,
             })
         } else {
             this.setState({
@@ -37,7 +37,8 @@ class App extends React.Component {
         if (this.state.startCount > -1 && this.state.startCount <= 1000
             && this.state.startCount < maxValue) {
             this.setState({
-                isStartError: false
+                isStartError: false,
+                isDataEntering: true,
             })
         } else {
             this.setState({
@@ -56,14 +57,14 @@ class App extends React.Component {
             && startValue < this.state.maxCount) {
             this.setState({
                 isStartError: false,
-                isDataEntering: false
+                isDataEntering: true
             })
         } else {
             this.setState({
                 isStartError: true
             })
         }
-        if (this.state.maxCount > -1 && this.state.maxCount <= 1000
+        if (this.state.maxCount > 0 && this.state.maxCount <= 1000
             && this.state.maxCount > startValue) {
             this.setState({
                 isMaxError: false
@@ -78,7 +79,7 @@ class App extends React.Component {
     setCount = () => {
         this.props.setCount()
         this.setState({
-            isDataEntering: true
+            isDataEntering: false
         }, () => {
             saveState(this.props)
         })
@@ -110,6 +111,14 @@ class App extends React.Component {
 
     onRemoveLocalStorage = () => {
         removeLocalStorage()
+        this.props.enterMaxValue(1)
+        this.props.enterStartValue(0)
+        this.setState({
+            isDataEntering: true,
+            isMaxError: false,
+            isStartError: false,
+            isUpCountMax: false
+        })
     }
 
     render = () => {
